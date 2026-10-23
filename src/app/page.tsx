@@ -32,9 +32,9 @@ const WHATSAPP_FAIR =
 const WHATSAPP_MAINTENANCE =
   "https://api.whatsapp.com/send?phone=573135910868&text=" +
   encodeURIComponent("Hola, vengo de la feria y quiero agendar una visita de mantenimiento.");
-/* Redes sociales oficiales: se llenan solo con la URL verificada en el sitio oficial */
-const INSTAGRAM_URL = "";
-const FACEBOOK_URL = "";
+/* Redes sociales oficiales: URLs exactas extraídas del DOM del sitio oficial (23-oct-2026) */
+const INSTAGRAM_URL = "https://www.instagram.com/refrindustrial_ingenieria/";
+const FACEBOOK_URL = "https://www.facebook.com/people/Refrindustrial-Ingenier%C3%ADa-SAS/61562111681966/";
 
 /* ---------- Autoplay para carruseles (avanza solo, se pausa al tocar) ---------- */
 function useCarouselAutoplay(ref: React.RefObject<HTMLDivElement | null>) {

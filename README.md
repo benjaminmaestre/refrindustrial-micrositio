@@ -15,6 +15,5 @@ Importar `benjaminmaestre/refrindustrial-micrositio` desde el panel de Vercel. F
 
 ## Pendiente antes de publicación definitiva
 
-- Confirmar las URLs oficiales de Instagram y Facebook para activar sus botones (`INSTAGRAM_URL` / `FACEBOOK_URL` en `src/app/page.tsx`); el resto de datos ya son los reales.
 - Configurar la URL que se grabará en la tarjeta NFC / código QR del stand.
 - La lectura de credenciales y captura de leads no están incluidas en esta primera fase.
