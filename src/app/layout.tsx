@@ -10,7 +10,8 @@ export const metadata: Metadata = {
     title: "Refrindustrial | Refrigeración industrial",
     description: "Ingeniería y soluciones para la cadena de frío.",
     type: "website",
-    locale: "es_CO"
+    locale: "es_CO",
+    images: ["/images/flyer-portada.png"]
   }
 };
 

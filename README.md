@@ -1,6 +1,6 @@
 # Refrindustrial — Micrositio de feria
 
-Micrositio móvil para la feria de Refrindustrial, con estética de tarjeta digital inspirada en Beacons: fondo persistente de refrigeración industrial y módulos flotantes desplazándose por encima.
+Micrositio de una sola página tipo Beacons / Link in Bio para la feria de Refrindustrial: fondo animado futurista fijo, perfil con botón de compartir, carrusel de soluciones con avance automático, botones de enlace oscuros con efecto tilt 3D (border-radius 16px), bloque «Quiénes somos», carrusel adicional con las piezas/flyers de feria y pie mínimo. Todos los datos y enlaces son los reales de la empresa; los enlaces viven en un bloque `CONFIGURACIÓN` al inicio de `src/app/page.tsx`, fáciles de editar.
 
 ## Desarrollo local
 
@@ -15,8 +15,6 @@ Importar `benjaminmaestre/refrindustrial-micrositio` desde el panel de Vercel. F
 
 ## Pendiente antes de publicación definitiva
 
-- Confirmar WhatsApp, email, redes y datos comerciales.
-- Conseguir logotipo oficial y fotografía aprobada por el cliente.
-- Sustituir los datos provisionales antes de presentar la versión final.
-- Configurar la URL que se grabará en la tarjeta NFC.
+- Confirmar las URLs oficiales de Instagram y Facebook para activar sus botones (`INSTAGRAM_URL` / `FACEBOOK_URL` en `src/app/page.tsx`); el resto de datos ya son los reales.
+- Configurar la URL que se grabará en la tarjeta NFC / código QR del stand.
 - La lectura de credenciales y captura de leads no están incluidas en esta primera fase.
