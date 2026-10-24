@@ -15,20 +15,12 @@ a{color:inherit;text-decoration:none}
 button{font:inherit}
 img{display:block;max-width:100%}
 
-/* ============ FONDO ANIMADO (fijo, futurista) ============ */
+/* ============ FONDO EN VIDEO (fijo) ============ */
 .beacons-page{min-height:100svh;position:relative;isolation:isolate;overflow-x:hidden}
-.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,#0a2c49 0%,#04182c 45%,#020609 100%);pointer-events:none}
-.bg-photo{position:absolute;inset:-6%;background:url('/images/solucion-diseno.webp') center/cover;opacity:.34;filter:saturate(.85) blur(2px);animation:bgDrift 26s ease-in-out infinite alternate}
-@keyframes bgDrift{from{transform:scale(1.02) translate3d(0,0,0)}to{transform:scale(1.1) translate3d(0,-2.5%,0)}}
-.bg-glow{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5}
-.bg-glow-a{width:55vw;height:55vw;left:-18vw;top:-12vh;background:radial-gradient(circle,rgba(70,185,235,.5),transparent 65%);animation:glowFloat 17s ease-in-out infinite alternate}
-.bg-glow-b{width:48vw;height:48vw;right:-14vw;top:34vh;background:radial-gradient(circle,rgba(8,84,148,.65),transparent 65%);animation:glowFloat 21s ease-in-out infinite alternate-reverse}
-@keyframes glowFloat{from{transform:translate3d(0,0,0)}to{transform:translate3d(4vw,5vh,0)}}
-.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(70,185,235,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(70,185,235,.06) 1px,transparent 1px);background-size:56px 56px;animation:gridMove 14s linear infinite;mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent)}
-@keyframes gridMove{from{background-position:0 0,0 0}to{background-position:0 56px,0 0}}
-.particle{position:absolute;top:-4vh;border-radius:50%;background:#bfeaff;box-shadow:0 0 8px rgba(140,220,255,.9);animation-name:fall;animation-timing-function:linear;animation-iteration-count:infinite}
-@keyframes fall{to{transform:translate3d(-6vw,108vh,0)}}
-.bg-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,8,14,.55),rgba(2,8,14,.72) 45%,rgba(1,5,9,.9))}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:#04101d;pointer-events:none}
+.bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:kenburns 44s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1) translate3d(0,0,0)}to{transform:scale(1.12) translate3d(0,-1.5%,0)}}
+.bg-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,10,20,.62),rgba(3,12,24,.78) 45%,rgba(2,6,12,.92))}
 
 /* ============ COLUMNA ============ */
 .column{width:min(680px,calc(100% - 24px));margin:0 auto;padding:calc(20px + env(safe-area-inset-top)) 0 calc(30px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:16px}
@@ -40,26 +32,46 @@ img{display:block;max-width:100%}
 .share-btn:active{transform:scale(.94)}
 .avatar{width:118px;height:118px;margin:0 auto 14px;border-radius:50%;background:#fff;border:2px solid rgba(70,185,235,.75);display:grid;place-items:center;overflow:hidden;box-shadow:0 16px 44px rgba(0,0,0,.45)}
 .avatar img{width:82%;height:82%;object-fit:contain}
-.profile h1{margin:0;font:800 clamp(26px,6vw,36px)/1.08 var(--display);letter-spacing:.14em}
-.profile-sub{margin:9px 0 0;font:700 clamp(12px,3vw,15px)/1.2 var(--display);letter-spacing:.32em;color:#cfeaff}
-.profile-line{margin:8px 0 0;font-size:13px;color:var(--muted)}
+.profile-name{margin:0;font:800 clamp(24px,5.6vw,32px)/1.1 var(--display);letter-spacing:.1em}
+.profile-line{margin:7px 0 0;font-size:13.5px;color:#cfeaff}
+.fair-pill{display:inline-block;margin:16px 0 0;padding:8px 16px;border-radius:999px;border:1px solid rgba(70,185,235,.55);background:rgba(8,84,148,.35);font:700 12px/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:#dff3ff}
+.profile h1{margin:16px auto 0;max-width:560px;font:800 clamp(27px,6.4vw,40px)/1.12 var(--display);letter-spacing:-.01em}
+.tagline{margin:13px auto 0;max-width:540px;font-size:14.5px;line-height:1.6;color:#d7e5ec}
+.services-line{margin:11px 0 0;font:700 12px/1 var(--display);letter-spacing:.26em;text-transform:uppercase;color:var(--cyan)}
 
-/* ============ TEXTOS GUÍA ============ */
-.guide{margin:6px 0 -2px;text-align:center;font:800 clamp(13px,3.4vw,16px)/1.35 var(--display);letter-spacing:.12em;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+/* ============ FLYER DE FERIA ============ */
+.flyer{border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.2);background:#04121f;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.flyer-photo{position:relative;aspect-ratio:4/3.4}
+.flyer-photo>img{width:100%;height:100%;object-fit:cover}
+.flyer-badge{position:absolute;right:14px;bottom:-24px;width:64px;height:64px;border-radius:50%;background:#fff;border:2px solid rgba(70,185,235,.8);display:grid;place-items:center;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.4);z-index:2}
+.flyer-badge img{width:84%;height:84%;object-fit:contain}
+.flyer-tear{display:block;width:100%;height:14px;margin-top:-1px;fill:#04121f;transform:scaleY(-1)}
+.flyer-body{padding:26px 22px 22px;text-align:left}
+.flyer-logo-pill{display:inline-grid;place-items:center;background:#fff;border-radius:999px;padding:9px 18px}
+.flyer-logo-pill img{width:170px;height:auto}
+.flyer-body h2{margin:18px 0 14px;font:800 italic clamp(32px,8.6vw,46px)/1.04 var(--display);letter-spacing:.01em}
+.flyer-bands{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.flyer-bands li{padding:9px 14px;border-radius:9px;background:linear-gradient(90deg,rgba(158,164,167,.32),rgba(158,164,167,.12));border-left:4px solid var(--cyan);font:700 13.5px/1.3 var(--display);letter-spacing:.03em}
+.flyer-qr-row{display:flex;gap:16px;align-items:center;margin-top:20px;flex-wrap:wrap}
+.flyer-qr{display:grid;justify-items:center;gap:7px;font-size:11.5px;font-weight:700;color:#dff3ff;text-align:center}
+.flyer-qr img{width:104px;height:104px;border-radius:12px;background:#fff;padding:6px}
+.flyer-offer{margin:0;flex:1;min-width:180px;font-size:14px;line-height:1.55;color:#d7e5ec}
+.flyer-offer strong{color:var(--cyan)}
+.flyer-offer strong:first-child{display:block;font:800 12px/1 var(--display);letter-spacing:.22em;margin-bottom:6px}
 
-/* ============ CARRUSELES ============ */
+/* ============ GUÍA + CARRUSEL ============ */
+.guide{margin:8px 0 -4px;text-align:center}
+.guide h2{margin:0;font:800 clamp(19px,4.8vw,24px)/1.2 var(--display);letter-spacing:.04em}
+.guide p{margin:5px 0 0;font-size:12px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
 .carousel{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .carousel::-webkit-scrollbar{display:none}
 .slide{flex:0 0 88%;scroll-snap-align:start;margin:0;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.18);background:rgba(6,16,24,.65);box-shadow:0 18px 44px rgba(0,0,0,.35)}
 .slide img{width:100%;height:100%;object-fit:cover}
-figure.slide{aspect-ratio:4/3;display:flex;flex-direction:column}
+figure.slide{aspect-ratio:4/3.1;display:flex;flex-direction:column}
 figure.slide img{flex:1;min-height:0}
 figure.slide figcaption{padding:12px 16px 14px;display:flex;flex-direction:column;gap:3px;background:rgba(4,13,20,.82)}
 figure.slide figcaption strong{font:700 16px/1.2 var(--display);letter-spacing:.02em}
 figure.slide figcaption span{font-size:12.5px;line-height:1.45;color:var(--muted)}
-.flyer-slide{aspect-ratio:9/16}
-.flyer-slide img{transition:transform .25s}
-.flyer-slide:active img{transform:scale(.985)}
 
 /* ============ BOTONES estilo Beacons ============ */
 .link-stack{display:flex;flex-direction:column;gap:12px}
@@ -72,19 +84,18 @@ figure.slide figcaption span{font-size:12.5px;line-height:1.45;color:var(--muted
 .btn-text small{display:block;margin-top:4px;font-size:12.5px;line-height:1.35;color:var(--muted)}
 .btn-more{display:grid;place-items:center;color:rgba(255,255,255,.75)}
 
-/* ============ QUIÉNES SOMOS ============ */
+/* ============ QUIÉNES SOMOS / CIERRE ============ */
 .about{border:1px solid rgba(255,255,255,.18);border-radius:20px;overflow:hidden;background:rgba(6,16,24,.72);backdrop-filter:blur(14px);box-shadow:0 18px 44px rgba(0,0,0,.3)}
-.about-img{width:100%;aspect-ratio:2160/930;object-fit:cover}
+.about-img{width:100%;aspect-ratio:3/2;object-fit:cover}
 .about-copy{padding:18px 20px 20px}
-.about-copy h2{margin:0 0 9px;font:800 19px/1.2 var(--display);letter-spacing:.1em}
+.about-copy h2{margin:0 0 9px;font:800 20px/1.2 var(--display);letter-spacing:.04em}
 .about-copy p{margin:0;font-size:14px;line-height:1.65;color:#cfdde5}
+.about-copy .about-phrase{margin-top:12px;color:#eaf6ff;font-weight:600}
+.contact-list{list-style:none;margin:15px 0 0;padding:13px 0 0;border-top:1px solid rgba(255,255,255,.12);display:grid;gap:7px;font-size:13px;line-height:1.55;color:#b9ccd6}
+.contact-list a{color:#dff3ff;text-decoration:underline;text-underline-offset:3px}
 
-/* ============ CIERRE Y PIE ============ */
-.closing{text-align:center;padding:8px 10px 0}
-.closing h2{margin:0 0 8px;font:800 clamp(18px,4.6vw,23px)/1.25 var(--display);letter-spacing:.08em}
-.closing p{margin:0 auto;max-width:520px;font-size:13.5px;line-height:1.6;color:var(--muted)}
-.footer{text-align:center;padding-top:6px}
-.footer img{width:170px;margin:0 auto 9px;filter:brightness(0) invert(1);opacity:.92}
+/* ============ PIE ============ */
+.footer{text-align:center;padding-top:2px}
 .footer p{margin:0;font-size:11.5px;color:rgba(255,255,255,.55)}
 
 /* ============ DIÁLOGO DE COMPARTIR ============ */
@@ -97,11 +108,11 @@ figure.slide figcaption span{font-size:12.5px;line-height:1.45;color:var(--muted
 .share-options a,.share-options button{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#fff;font-size:14px;font-weight:600;cursor:pointer;text-align:left;transition:background .2s}
 .share-options a:hover,.share-options button:hover{background:rgba(70,185,235,.16)}
 
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-
 @media (max-width:420px){
   .btn{min-height:80px;padding:10px 12px;grid-template-columns:36px 1fr 36px}
   .avatar{width:104px;height:104px}
+  .flyer-qr-row{justify-content:center;text-align:center}
+  .flyer-offer{text-align:center}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}

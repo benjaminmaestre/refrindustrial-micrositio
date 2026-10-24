@@ -19,24 +19,18 @@ import {
 } from "lucide-react";
 
 /* ============================================================
-   CONFIGURACIÓN — todos los enlaces viven aquí, fáciles de editar
+   CONFIGURACIÓN — enlaces verificados del sitio oficial
    ============================================================ */
 const SITE_URL = "https://refrindustrial.com.co/";
 const SERVICES_URL = "https://refrindustrial.com.co/services";
 const ABOUT_URL = "https://refrindustrial.com.co/aboutUs";
 const MAPS_URL = "https://maps.app.goo.gl/YH3XxW8rZnWF2NYAA";
-const PHONE_NUMBER = "+57 313 591 0868";
-const WHATSAPP_FAIR =
-  "https://api.whatsapp.com/send?phone=573135910868&text=" +
-  encodeURIComponent("Hola, vengo de la feria y quiero una asesoría sin costo para mi proyecto de refrigeración.");
-const WHATSAPP_MAINTENANCE =
-  "https://api.whatsapp.com/send?phone=573135910868&text=" +
-  encodeURIComponent("Hola, vengo de la feria y quiero agendar una visita de mantenimiento.");
-/* Redes sociales oficiales: URLs exactas extraídas del DOM del sitio oficial (23-oct-2026) */
+const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=573135910868";
+const WHATSAPP_QR_URL = "https://wa.me/573135910868";
 const INSTAGRAM_URL = "https://www.instagram.com/refrindustrial_ingenieria/";
 const FACEBOOK_URL = "https://www.facebook.com/people/Refrindustrial-Ingenier%C3%ADa-SAS/61562111681966/";
 
-/* ---------- Autoplay para carruseles (avanza solo, se pausa al tocar) ---------- */
+/* ---------- Autoplay del carrusel (avanza solo, se pausa al tocar) ---------- */
 function useCarouselAutoplay(ref: React.RefObject<HTMLDivElement | null>) {
   const paused = useRef(false);
   const resumeTimer = useRef<number | undefined>(undefined);
@@ -97,63 +91,65 @@ function tiltUp(e: ReactMouseEvent<HTMLAnchorElement>) {
   }
 }
 
-const solutions = [
+const sections = [
   {
-    src: "/images/solucion-instalacion.webp",
-    alt: "Instalaciones industriales de sistemas de refrigeración",
+    src: "/images/seccion-instalacion.webp",
+    alt: "Instalación y montaje de sistemas de refrigeración industrial",
     title: "Instalación y montaje",
-    sub: "Suministro e instalación de sistemas de refrigeración industrial"
+    sub: "Suministro e instalación con puesta en marcha"
   },
   {
-    src: "/images/solucion-diseno.webp",
-    alt: "Especificación técnica y diseño de sistemas de refrigeración",
+    src: "/images/seccion-diseno.webp",
+    alt: "Diseño y especificación de sistemas de refrigeración industrial",
     title: "Diseño y especificación",
-    sub: "Asesoría, especificación y diseño a la medida de tu operación"
+    sub: "Asesoría, especificación y diseño a la medida"
   },
   {
-    src: "/images/solucion-servicios.webp",
-    alt: "Soluciones integrales de refrigeración: montaje, diseño y gerencia de mantenimiento",
+    src: "/images/seccion-mantenimiento.webp",
+    alt: "Mantenimiento preventivo y correctivo de refrigeración industrial",
     title: "Mantenimiento",
-    sub: "Mantenimiento preventivo y correctivo para que nunca pares"
+    sub: "Mantenimiento preventivo y correctivo"
   }
 ];
 
-const flyers = [
-  {
-    src: "/images/flyer-portada.png",
-    alt: "Refrindustrial — Refrigeración industrial, frío seguro siempre",
-    label: "Portada general",
-    href: WHATSAPP_FAIR
-  },
-  {
-    src: "/images/flyer-diseno.png",
-    alt: "Refrindustrial — Diseño y auditoría de sistemas de refrigeración",
-    label: "Diseño y auditoría",
-    href: SERVICES_URL
-  },
-  {
-    src: "/images/flyer-mantenimiento.png",
-    alt: "Refrindustrial — Mantenimiento preventivo y correctivo de refrigeración industrial",
-    label: "Mantenimiento",
-    href: WHATSAPP_MAINTENANCE
-  }
+const linkButtons = [
+  { icon: MessageCircle, title: "WHATSAPP", sub: "Escríbenos ahora", href: WHATSAPP_URL },
+  { icon: Wrench, title: "NUESTROS SERVICIOS", sub: "Conoce lo que hacemos", href: SERVICES_URL },
+  { icon: Users, title: "QUIÉNES SOMOS", sub: "Conoce la empresa", href: ABOUT_URL },
+  { icon: MapPin, title: "CÓMO LLEGAR", sub: "Calle 10 # 52-173, Medellín", href: MAPS_URL },
+  { icon: Phone, title: "LLÁMANOS", sub: "+57 313 591 0868", href: "tel:+573135910868" },
+  { icon: Instagram, title: "INSTAGRAM", sub: "Conoce nuestro trabajo", href: INSTAGRAM_URL },
+  { icon: Facebook, title: "FACEBOOK", sub: "Síguenos", href: FACEBOOK_URL },
+  { icon: Globe2, title: "SITIO WEB OFICIAL", sub: "refrindustrial.com.co", href: SITE_URL }
 ];
-
-const particles = Array.from({ length: 22 }, (_, i) => ({
-  left: `${(i * 47) % 100}%`,
-  size: 2 + (i % 3) * 2,
-  delay: `${(i % 11) * 1.7}s`,
-  duration: `${11 + (i % 7) * 3}s`,
-  opacity: 0.25 + (i % 5) * 0.12
-}));
 
 export default function HomePage() {
   const [shareOpen, setShareOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  const solutionsRef = useRef<HTMLDivElement>(null);
-  const flyersRef = useRef<HTMLDivElement>(null);
-  const pauseSolutions = useCarouselAutoplay(solutionsRef);
-  const pauseFlyers = useCarouselAutoplay(flyersRef);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const pauseCarousel = useCarouselAutoplay(carouselRef);
+
+  /* El video de fondo se pausa con "reducir movimiento" y con la pestaña oculta */
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const syncPlayback = () => {
+      if (reduceMotion.matches || document.hidden) {
+        video.pause();
+      } else {
+        void video.play().catch(() => undefined);
+      }
+    };
+    syncPlayback();
+    document.addEventListener("visibilitychange", syncPlayback);
+    reduceMotion.addEventListener("change", syncPlayback);
+    return () => {
+      document.removeEventListener("visibilitychange", syncPlayback);
+      reduceMotion.removeEventListener("change", syncPlayback);
+    };
+  }, []);
 
   useEffect(() => {
     if (!shareOpen) return;
@@ -174,44 +170,21 @@ export default function HomePage() {
     }
   };
 
-  const linkButtons = [
-    { icon: MessageCircle, title: "WHATSAPP", sub: "Asesoría sin costo en feria", href: WHATSAPP_FAIR },
-    { icon: Wrench, title: "NUESTROS SERVICIOS", sub: "Conoce todo lo que hacemos", href: SERVICES_URL },
-    { icon: Users, title: "QUIÉNES SOMOS", sub: "Conoce la empresa", href: ABOUT_URL },
-    { icon: MapPin, title: "CÓMO LLEGAR", sub: "Calle 10 # 52-173, Medellín", href: MAPS_URL },
-    { icon: Phone, title: "LLAMAR AHORA", sub: PHONE_NUMBER, href: "tel:+573135910868" },
-    ...(INSTAGRAM_URL
-      ? [{ icon: Instagram, title: "INSTAGRAM", sub: "Conoce nuestro trabajo", href: INSTAGRAM_URL }]
-      : []),
-    ...(FACEBOOK_URL
-      ? [{ icon: Facebook, title: "FACEBOOK", sub: "Síguenos", href: FACEBOOK_URL }]
-      : []),
-    { icon: Globe2, title: "SITIO WEB OFICIAL", sub: "refrindustrial.com.co", href: SITE_URL }
-  ];
-
   return (
     <main className="beacons-page">
-      {/* FONDO ANIMADO fijo, futurista */}
+      {/* FONDO EN VIDEO futurista, fijo */}
       <div className="bg" aria-hidden="true">
-        <div className="bg-photo" />
-        <div className="bg-glow bg-glow-a" />
-        <div className="bg-glow bg-glow-b" />
-        <div className="bg-grid" />
-        {particles.map((p, i) => (
-          <span
-            key={i}
-            className="particle"
-            style={{
-              left: p.left,
-              width: p.size,
-              height: p.size,
-              opacity: p.opacity,
-              animationDelay: p.delay,
-              animationDuration: p.duration
-            }}
-          />
-        ))}
-        <div className="bg-shade" />
+        <video
+          ref={videoRef}
+          className="bg-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/fondo-futurista.jpg"
+          src="/images/fondo-futurista.mp4"
+        />
+        <div className="bg-veil" />
       </div>
 
       <div className="column">
@@ -224,21 +197,72 @@ export default function HomePage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/images/logo-r.png" alt="Refrindustrial" />
           </div>
-          <h1>REFRINDUSTRIAL</h1>
-          <p className="profile-sub">REFRIGERACIÓN INDUSTRIAL</p>
-          <p className="profile-line">Asesoría · Suministro · Montaje · Mantenimiento</p>
+          <p className="profile-name">Refrindustrial</p>
+          <p className="profile-line">Refrigeración Industrial · Medellín, Colombia</p>
+          <span className="fair-pill">Estamos en la feria · Visítanos</span>
+          <h1>Soluciones integrales de refrigeración industrial</h1>
+          <p className="tagline">
+            Asesoría, suministro, montaje y mantenimiento de sistemas de refrigeración para los diferentes
+            sectores industriales.
+          </p>
+          <p className="services-line">Diseño · Montaje · Mantenimiento</p>
         </header>
 
-        {/* TEXTO GUÍA + CARRUSEL DE SOLUCIONES */}
-        <p className="guide">NUESTRAS SOLUCIONES — DESLIZA LA IMAGEN</p>
+        {/* FLYER PROMOCIONAL DE FERIA (con QR a WhatsApp) */}
+        <section className="flyer" aria-label="Pieza promocional de feria">
+          <div className="flyer-photo">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/flyer-foto.jpg" alt="Equipo de refrigeración industrial instalado por Refrindustrial" />
+            <span className="flyer-badge" aria-hidden="true">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/logo-r.png" alt="" />
+            </span>
+          </div>
+          <svg className="flyer-tear" viewBox="0 0 100 6" preserveAspectRatio="none" aria-hidden="true">
+            <polygon points="0,6 5,2 12,5 20,1 28,4 36,2 44,5 52,1 60,4 68,2 76,5 84,1 92,4 100,2 100,6" />
+          </svg>
+          <div className="flyer-body">
+            <span className="flyer-logo-pill">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/logo-horizontal.png" alt="Refrindustrial" />
+            </span>
+            <h2>
+              FRÍO SEGURO
+              <br />
+              SIEMPRE
+            </h2>
+            <ul className="flyer-bands">
+              <li>Asesoría, Especificación y Diseño</li>
+              <li>Suministro e Instalación</li>
+              <li>Mantenimiento preventivo y correctivo</li>
+            </ul>
+            <div className="flyer-qr-row">
+              <a className="flyer-qr" href={WHATSAPP_QR_URL} target="_blank" rel="noopener noreferrer">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/qr-whatsapp.png" alt="Código QR para escribir por WhatsApp a Refrindustrial" />
+                <span>Escríbenos por WhatsApp</span>
+              </a>
+              <p className="flyer-offer">
+                <strong>OFERTA DE FERIA</strong>
+                Asesoría para tu proyecto de refrigeración <strong>SIN COSTO</strong>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* CARRUSEL DE SECCIONES */}
+        <div className="guide">
+          <h2>Conoce lo que hacemos</h2>
+          <p>Desliza la imagen</p>
+        </div>
         <div
           className="carousel"
-          ref={solutionsRef}
-          onMouseDown={pauseSolutions}
-          onTouchStart={pauseSolutions}
-          onWheel={pauseSolutions}
+          ref={carouselRef}
+          onMouseDown={pauseCarousel}
+          onTouchStart={pauseCarousel}
+          onWheel={pauseCarousel}
         >
-          {solutions.map((s) => (
+          {sections.map((s) => (
             <figure className="slide" key={s.src}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={s.src} alt={s.alt} loading="lazy" />
@@ -281,60 +305,40 @@ export default function HomePage() {
           })}
         </nav>
 
-        {/* QUIÉNES SOMOS */}
+        {/* CIERRE — QUIÉNES SOMOS Y CONTACTO */}
         <section className="about">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="about-img"
-            src="/images/quienes-somos.webp"
-            alt="Soluciones integrales de refrigeración — Refrindustrial"
+            src="/images/seccion-equipo.webp"
+            alt="Equipo de Refrindustrial en una sala de control de refrigeración"
             loading="lazy"
           />
           <div className="about-copy">
-            <h2>¿QUIÉNES SOMOS?</h2>
+            <h2>¿Quiénes somos?</h2>
             <p>
               Somos una empresa dedicada a la asesoría, suministro, montaje y mantenimiento de sistemas de
               refrigeración para los diferentes sectores industriales, con los estándares de calidad y
               cumplimiento técnico que su compañía requiere.
             </p>
+            <p className="about-phrase">
+              Tu satisfacción es nuestra prioridad y tu experiencia memorable es nuestro compromiso.
+            </p>
+            <ul className="contact-list">
+              <li>
+                <a href="tel:+573135910868">+57 313 591 0868</a> · <a href="tel:+573127516467">+57 312 751 6467</a>{" "}
+                · <a href="tel:+573103881998">+57 310 388 1998</a>
+              </li>
+              <li>
+                <a href="mailto:gerencia@refrindustrial.com">gerencia@refrindustrial.com</a> ·{" "}
+                <a href="mailto:ingenieria@refrindustrial.com">ingenieria@refrindustrial.com</a>
+              </li>
+              <li>Calle 10 # 52-173, Medellín</li>
+            </ul>
           </div>
         </section>
 
-        {/* PIEZAS DE FERIA — los flyers, además de las imágenes de arriba */}
-        <p className="guide">PIEZAS DE FERIA — DESLIZA LA IMAGEN</p>
-        <div
-          className="carousel flyer-carousel"
-          ref={flyersRef}
-          onMouseDown={pauseFlyers}
-          onTouchStart={pauseFlyers}
-          onWheel={pauseFlyers}
-        >
-          {flyers.map((f) => (
-            <a
-              className="slide flyer-slide"
-              key={f.src}
-              href={f.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={f.label}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={f.src} alt={f.alt} loading="lazy" />
-            </a>
-          ))}
-        </div>
-
-        {/* CIERRE + PIE */}
-        <section className="closing">
-          <h2>PROTEGEMOS TU CADENA DE FRÍO</h2>
-          <p>
-            Asesoría, suministro, montaje y mantenimiento de sistemas de refrigeración industrial, con los
-            estándares de calidad que tu compañía requiere.
-          </p>
-        </section>
         <footer className="footer">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/logo-horizontal.png" alt="Refrindustrial" />
           <p>Refrindustrial · Calle 10 # 52-173, Medellín · +57 313 591 0868</p>
         </footer>
       </div>
@@ -389,7 +393,6 @@ export default function HomePage() {
           </div>
         </div>
       )}
-
     </main>
   );
 }
