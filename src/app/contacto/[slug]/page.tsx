@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Link from "next/link";
 import "../contacto.css";
 
 type Exec = {
@@ -17,7 +18,6 @@ const EXECS: Exec[] = [
 ];
 
 const ADDRESS = "Calle 10 No. 52-173 · Medellín";
-const SITE = "https://refrindustrial-micrositio.vercel.app";
 
 function greeting(e: Exec) {
   return (
@@ -87,9 +87,9 @@ export default async function ContactPage({
         <a className="contacto-btn contacto-btn-call" href={`tel:+${e.wa}`}>
           Llamar ahora
         </a>
-        <a className="contacto-back" href="/">
+        <Link className="contacto-back" href="/">
           Ver el micrositio de Refrindustrial
-        </a>
+        </Link>
       </section>
     </main>
   );
