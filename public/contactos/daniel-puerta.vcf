@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Puerta;Daniel;;;
+FN:Daniel Puerta
+ORG:Refrindustrial Ingeniería S.A.S.
+TITLE:Director de Ingeniería
+TEL;TYPE=CELL;VOICE:+573127516467
+EMAIL;TYPE=WORK:daniel@rdc.com.co
+ADR;TYPE=WORK:;;Calle 10 No. 52-173;Medellín;Antioquia;;Colombia
+URL:https://refrindustrial-micrositio.vercel.app/contacto/daniel-puerta
+END:VCARD

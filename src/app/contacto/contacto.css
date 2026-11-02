@@ -1,0 +1,46 @@
+/* Tarjetas de contacto de ejecutivos — Refrindustrial */
+.contacto-wrap {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 14px;
+  background: linear-gradient(160deg, #0a1f33 0%, #10263f 55%, #085494 130%);
+  font-family: inherit;
+}
+.contacto-card {
+  width: 100%;
+  max-width: 400px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 28px 24px 24px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+.contacto-logo { width: 190px; height: auto; margin: 0 auto 14px; display: block; }
+.contacto-photo-ring {
+  width: 168px; height: 168px; margin: 4px auto 14px;
+  border-radius: 50%; padding: 4px;
+  background: linear-gradient(150deg, #46b9eb, #085494);
+}
+.contacto-photo {
+  width: 100%; height: 100%; border-radius: 50%;
+  object-fit: cover; display: block; background: #e8eef4;
+}
+.contacto-name { font-size: 27px; font-weight: 800; color: #10263f; margin: 0 0 2px; }
+.contacto-role { font-size: 16.5px; color: #085494; font-weight: 600; margin: 0 0 2px; }
+.contacto-company { font-size: 14px; color: #5a6874; margin: 0 0 14px; }
+.contacto-lines { font-size: 14.5px; color: #33424f; line-height: 1.5; margin-bottom: 20px; }
+.contacto-lines p { margin: 0; }
+.contacto-btn {
+  display: block; width: 100%; box-sizing: border-box;
+  padding: 15px 18px; border-radius: 14px; margin: 0 0 11px;
+  font-size: 16.5px; font-weight: 700; text-decoration: none;
+}
+.contacto-btn-wa { background: #1faa55; color: #ffffff; }
+.contacto-btn-save { background: #085494; color: #ffffff; }
+.contacto-btn-call { background: #ffffff; color: #085494; border: 2px solid #085494; }
+.contacto-back {
+  display: inline-block; margin-top: 8px; font-size: 14px;
+  color: #085494; text-decoration: underline;
+}

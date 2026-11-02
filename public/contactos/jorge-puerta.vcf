@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Puerta;Jorge;;;
+FN:Jorge Puerta
+ORG:Refrindustrial Ingeniería S.A.S.
+TITLE:Gerente General
+TEL;TYPE=CELL;VOICE:+573103881998
+EMAIL;TYPE=WORK:gerencia@refrindustrial.com
+ADR;TYPE=WORK:;;Calle 10 No. 52-173;Medellín;Antioquia;;Colombia
+URL:https://refrindustrial-micrositio.vercel.app/contacto/jorge-puerta
+END:VCARD
